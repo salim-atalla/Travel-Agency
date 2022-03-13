@@ -1,15 +1,16 @@
 package fr.unantes.sce.calendar;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Correspondence {
     private Travel travel;
     private City startCity;
     private City destinationCity;
-    private int startTime;
-    private int arrivalTime;
+    private LocalDate startTime;
+    private LocalDate arrivalTime;
 
-    public Correspondence(Travel travel, City startCity, City destinationCity, int startTime, int arrivalTime) {
+    public Correspondence(Travel travel, City startCity, City destinationCity, LocalDate startTime, LocalDate arrivalTime) {
         this.travel = travel;
         this.startCity = startCity;
         this.destinationCity = destinationCity;
@@ -41,19 +42,19 @@ public class Correspondence {
         this.destinationCity = destinationCity;
     }
 
-    public int getStartTime() {
+    public LocalDate getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(int startTime) {
+    public void setStartTime(LocalDate startTime) {
         this.startTime = startTime;
     }
 
-    public int getArrivalTime() {
+    public LocalDate getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(int arrivalTime) {
+    public void setArrivalTime(LocalDate arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
