@@ -13,8 +13,8 @@ public class Calendar {
     private Person owner;
 
     public Calendar(Person owner) {
-        this.owner = owner;
-        travels = new ArrayList();
+        this.setOwner(owner);
+        setTravels(new ArrayList());
     }
 
     public Person getOwner() {
@@ -25,11 +25,22 @@ public class Calendar {
         this.owner = owner;
     }
 
-    public boolean addTravel(Travel travel) {
-        return travels.add(travel);
+    public boolean addTravel(Travel travel) throws IllegalStateException {
+        if (this.getTravels().size()<=9) {
+            return getTravels().add(travel);
+        }else throw new IllegalStateException(" there are already 10 travels in the Calendar , consider deleting or replacing one");
+
     }
 
     public boolean removeTravel(Travel travel) {
-        return travels.remove(travel);
+        return getTravels().remove(travel);
+    }
+
+    public List getTravels() {
+        return travels;
+    }
+
+    public void setTravels(List travels) {
+        this.travels = travels;
     }
 }

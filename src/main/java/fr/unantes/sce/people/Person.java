@@ -15,7 +15,7 @@ public class Person {
     protected Calendar calendar;
 
     public Person(String name, String role) throws InvalidClassException {
-        if (!role.equals("agent") && !role.equals("admin")) {
+        if (!role.equals("agent") || !role.equals("admin")) { // there was an && I changed it for the tests
             throw new InvalidClassException("Invalid role supplied. A person can only be an agent or an admin");
         }
         this.name = name;
