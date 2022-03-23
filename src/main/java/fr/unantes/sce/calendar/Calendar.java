@@ -9,12 +9,12 @@ import java.util.List;
  * A Calendar stores a list of travels for an agent
  */
 public class Calendar {
-    private List travels;
+    private List<Travel> travels;
     private Person owner;
 
     public Calendar(Person owner) {
         this.setOwner(owner);
-        setTravels(new ArrayList());
+        this.travels = new ArrayList<Travel>();
     }
 
     public Person getOwner() {
@@ -25,22 +25,31 @@ public class Calendar {
         this.owner = owner;
     }
 
-    public boolean addTravel(Travel travel) throws IllegalStateException {
-        if (this.getTravels().size()<=9) {
-            return getTravels().add(travel);
-        }else throw new IllegalStateException(" there are already 10 travels in the Calendar , consider deleting or replacing one");
-
+    public boolean addTravel(Travel t) throws IllegalStateException {
+        if (travels.size() < 10) {
+            t.setParent(this);
+            return this.basicAddTravel(t);
+        }
+        return false;
     }
 
-    public boolean removeTravel(Travel travel) {
-        return getTravels().remove(travel);
+    public boolean basicAddTravel (Travel t) {
+        return travels.add(t);
     }
 
-    public List getTravels() {
-        return travels;
+    public boolean removeTravel(Travel t) {
+        return this.travels.remove(t);
     }
 
-    public void setTravels(List travels) {
+
+    public List<Travel> getTravels() {
+        return this.travels;
+    }
+
+    public void setTravels(List<Travel> travels) {
+        for (Travel t : travels) {
+            t.setParent(this);
+        }
         this.travels = travels;
     }
 }

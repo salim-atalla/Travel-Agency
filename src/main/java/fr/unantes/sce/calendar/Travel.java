@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Travel {
     private List steps;
-    private final Calendar parent;
+    private Calendar parent;
 
     public Travel(Calendar parent) {
         this.parent = parent;
@@ -19,7 +19,10 @@ public class Travel {
         return parent;
     }
 
-    //public void setParent(Calendar parent) { this.parent = parent;}
+    public void setParent(Calendar parent) {
+        parent.basicAddTravel(this);
+        this.parent = parent;
+    }
 
     public Correspondence getFirstStep() {
         return (Correspondence) steps.get(0);
