@@ -14,7 +14,7 @@ public class Calendar {
 
     public Calendar(Person owner) {
         this.setOwner(owner);
-        this.travels = new ArrayList<Travel>();
+        this.travels = new ArrayList<>();
     }
 
     public Person getOwner() {
@@ -25,7 +25,7 @@ public class Calendar {
         this.owner = owner;
     }
 
-    public boolean addTravel(Travel t) throws IllegalStateException {
+    public boolean addTravel(Travel t) {
         if (travels.size() < 10) {
             t.setParent(this);
             return this.basicAddTravel(t);

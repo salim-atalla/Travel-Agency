@@ -3,12 +3,14 @@ package fr.unantes.sce.calendar;
 
 import fr.unantes.sce.people.Person;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.InvalidClassException;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 
 
 
@@ -63,7 +65,7 @@ public class CalendarTest {
 
     @Test
     void testBidirectionalAdd () {
-        ArrayList<Travel> travels = new ArrayList<Travel>();
+        ArrayList<Travel> travels = new ArrayList<>();
         for (int i=0; i<10; i++) {
             travels.add(new Travel(calendar));
         }
@@ -87,6 +89,15 @@ public class CalendarTest {
         assertThat(calendar.getTravels().contains(t1)).isFalse();
         assertThat(t1.getParent()).isEqualTo(cal2);
         assertThat(cal2.getTravels().contains(t1)).isTrue();
+    }
+
+    @AfterEach
+    public void tearDown() throws NullPointerException {
+        if (calendar != null) {
+            calendar.getTravels().clear();
+        } else {
+            throw new NullPointerException("Calendar is null!");
+        }
     }
 
 
