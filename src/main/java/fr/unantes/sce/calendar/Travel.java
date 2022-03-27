@@ -21,7 +21,20 @@ public class Travel {
 
     public void setParent(Calendar parent) {
         parent.basicAddTravel(this);
+        this.basicSetParent(parent);
+    }
+
+    public void basicSetParent (Calendar parent) {
         this.parent = parent;
+    }
+
+    private void unSetParent () {
+        this.parent.removeTravel(this);
+        basicUnSetParent();
+    }
+
+    private void basicUnSetParent () {
+        this.parent = null;
     }
 
     public Correspondence getFirstStep() {

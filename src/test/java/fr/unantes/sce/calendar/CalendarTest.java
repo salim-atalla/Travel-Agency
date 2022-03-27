@@ -33,7 +33,7 @@ public class CalendarTest {
     }
 
     @Test
-    void doesNotHaveOver10Travels() {
+    void doesNotHaveOver10Travels () {
 
         for (int i=0; i<10; i++){
             calendar.addTravel(new Travel(calendar));
