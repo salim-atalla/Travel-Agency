@@ -51,8 +51,10 @@ public class Travel {
 
     public boolean addCorrespondence(Correspondence step) {
         if (step != null) {
-            step.setTravel(this);
-            return this.basicAddCorrespondence(step);
+            if (this.steps.size() < 10) {
+                step.setTravel(this);
+                return this.basicAddCorrespondence(step);
+            }
         }
         return false;
     }
@@ -62,8 +64,13 @@ public class Travel {
     }
 
     public boolean removeCorrespondence(Correspondence step) {
-        step.unSetTravel();
-        return this.basicRemoveCorrespondence(step);
+        if (step != null) {
+            if (this.steps.size() > 1) {
+                step.unSetTravel();
+                return this.basicRemoveCorrespondence(step);
+            }
+        }
+        return false;
     }
 
     public boolean basicRemoveCorrespondence(Correspondence step) {
