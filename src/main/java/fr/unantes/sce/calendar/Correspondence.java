@@ -23,7 +23,24 @@ public class Correspondence {
     }
 
     public void setTravel(Travel travel) {
-        this.travel = travel;
+        if (travel != null) {
+            travel.basicRemoveCorrespondence(this);
+        }
+        this.basicSetTravel(travel);
+        if (!travel.steps().contains(this)) {
+            travel.basicAddCorrespondence(this);
+        }
+    }
+
+    public void basicSetTravel (Travel travel) { this.travel = travel; }
+
+    public void unSetTravel () {
+        this.travel.basicRemoveCorrespondence(this);
+        this.basicUnSetTravel();
+    }
+
+    private void basicUnSetTravel () {
+        this.travel = null;
     }
 
     public City getStartCity() {

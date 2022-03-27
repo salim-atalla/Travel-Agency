@@ -30,7 +30,7 @@ public class Travel {
         this.parent = parent;
     }
 
-    private void unSetParent () {
+    public void unSetParent () {
         if (this.parent != null) {
             this.parent.removeTravel(this);
             basicUnSetParent();
@@ -62,7 +62,7 @@ public class Travel {
     }
 
     public boolean removeCorrespondence(Correspondence step) {
-        step.setTravel(null);
+        step.unSetTravel();
         return this.basicRemoveCorrespondence(step);
     }
 
