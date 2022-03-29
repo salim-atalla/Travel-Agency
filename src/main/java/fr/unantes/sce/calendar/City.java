@@ -6,12 +6,12 @@ import java.util.Objects;
  * A city
  */
 public class City {
-    public String country;
-    public String name;
+    private String country;
+    private String name;
 
     public City(String country, String name) {
-        this.country = country;
-        this.name = name;
+        this.setCountry(country);
+        this.setName(name);
     }
 
     public String getCountry() {
