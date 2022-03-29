@@ -5,17 +5,17 @@ import java.util.Objects;
 
 public class Correspondence {
     private Travel travel;
-    private City startCity;
+    private City originCity;
     private City destinationCity;
     private LocalDate startTime;
     private LocalDate arrivalTime;
 
-    public Correspondence(Travel travel, City startCity, City destinationCity, LocalDate startTime, LocalDate arrivalTime) {
-        this.travel = travel;
-        this.startCity = startCity;
-        this.destinationCity = destinationCity;
-        this.startTime = startTime;
-        this.arrivalTime = arrivalTime;
+    public Correspondence(Travel travel, City originCity, City destinationCity, LocalDate startTime, LocalDate arrivalTime) {
+        this.setTravel(travel);
+        this.setOriginCity(originCity);
+        this.setDestinationCity(destinationCity);
+        this.setStartTime(startTime);
+        this.setArrivalTime(arrivalTime);
     }
 
     public Travel getTravel() {
@@ -27,9 +27,11 @@ public class Correspondence {
             travel.basicRemoveCorrespondence(this);
         }
         this.basicSetTravel(travel);
-        if (!travel.steps().contains(this)) {
-            travel.basicAddCorrespondence(this);
-        }
+            assert travel != null;
+            if (!travel.steps().contains(this)) {
+                     travel.basicAddCorrespondence(this);
+                }
+
     }
 
     public void basicSetTravel (Travel travel) { this.travel = travel; }
@@ -43,12 +45,12 @@ public class Correspondence {
         this.travel = null;
     }
 
-    public City getStartCity() {
-        return startCity;
+    public City getOriginCity() {
+        return originCity;
     }
 
-    public void setStartCity(City startCity) {
-        this.startCity = startCity;
+    public void setOriginCity(City originCity) {
+        this.originCity = originCity;
     }
 
     public City getDestinationCity() {
@@ -80,7 +82,7 @@ public class Correspondence {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Correspondence that = (Correspondence) o;
-        return getStartCity().equals(that.getStartCity()) &&
+        return getOriginCity().equals(that.getOriginCity()) &&
                 getDestinationCity().equals(that.getDestinationCity()) &&
                 getStartTime() == that.getStartTime() &&
                 getArrivalTime() == that.getArrivalTime();
@@ -88,6 +90,6 @@ public class Correspondence {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTravel(), getStartCity(), getDestinationCity(), getStartTime(), getArrivalTime());
+        return Objects.hash(getTravel(), getOriginCity(), getDestinationCity(), getStartTime(), getArrivalTime());
     }
 }
