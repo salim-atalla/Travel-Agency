@@ -12,6 +12,7 @@ public class Travel {
 
     public Travel(Calendar parent) {
         this.parent = parent;
+        parent.basicAddTravel(this);
         steps = new ArrayList<Correspondence>();
     }
 
@@ -51,7 +52,9 @@ public class Travel {
 
     public boolean addCorrespondence(Correspondence step) {
         if (step != null) {
-            if (this.steps.size() < 10) {
+            if (this.steps.size() < 10 && !this.steps.contains(step)
+                    && step.getStartTime().isAfter(this.getLastStep().getArrivalTime())
+                    && step.getOriginCity() == this.getLastStep().getDestinationCity()) {
                 step.setTravel(this);
                 return this.basicAddCorrespondence(step);
             }
@@ -65,7 +68,7 @@ public class Travel {
 
     public boolean removeCorrespondence(Correspondence step) {
         if (step != null) {
-            if (this.steps.size() > 1) {
+            if (this.steps.size() > 1 && this.steps.contains(step)) {
                 step.unSetTravel();
                 return this.basicRemoveCorrespondence(step);
             }
